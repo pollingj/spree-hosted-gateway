@@ -1,7 +1,7 @@
 class ExternalGateway < Spree::PaymentMethod
 
   #We need access to routes to correctly assemble a return url
- include ActionController::UrlWriter
+  include Rails.application.routes.url_helpers
 
   #This is normally set in the Admin UI - the server in this case is where to redirect to.
   preference :server, :string

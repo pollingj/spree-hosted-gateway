@@ -1,4 +1,4 @@
-class ExternalGateway < PaymentMethod
+class ExternalGateway < Spree::PaymentMethod
 
   #We need access to routes to correctly assemble a return url
  include ActionController::UrlWriter
@@ -36,7 +36,7 @@ class ExternalGateway < PaymentMethod
   def process_response(params)
     begin
       #Find order
-      order = Order.find_by_number(ExternalGateway.parse_custom_data(params)["order_number"])
+      order = Spree::Order.find_by_number(ExternalGateway.parse_custom_data(params)["order_number"])
       raise ActiveRecord::RecordNotFound if order.token != ExternalGateway.parse_custom_data(params)["order_token"]
 
       #Check for successful response

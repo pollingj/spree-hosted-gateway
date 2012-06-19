@@ -11,7 +11,7 @@ module HostedGateway
       end
 
       
-      CheckoutController.send(:include, HostedGateway::CheckoutControllerExt)
+      Spree::CheckoutController.send(:include, HostedGateway::CheckoutControllerExt)
       Admin::PaymentsController.send(:include, HostedGateway::AdminPaymentsControllerExt)
       
       initializer "spree_ccavenue.register.payment_method", :after => "spree.register.payment_methods" do |app|
